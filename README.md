@@ -10,10 +10,8 @@ Most eInk based calendar projects are using a Raspberry Pi to display the calend
 
 ## Hardware
 
-+ Micro-Controller: [Adafruit HUZZAH32 – ESP32 Feather Board](https://www.adafruit.com/product/3405)
-+ Display: [7.5inch HD e-Paper E-Ink Raw Display, 880×528, Black / White / Red](https://www.waveshare.com/product/displays/e-paper/epaper-1/7.5inch-hd-e-paper-hat-b.htm)
-+ Display-Driver: [Universal e-Paper Raw Panel Driver HAT](https://www.waveshare.com/e-paper-driver-hat.htm)
-+ Battery: [Dantona Industries - 3.7V 5200mAh W/CONN](https://www.digikey.com/en/products/detail/L37A52-2-1-2WX/3145-L37A52-2-1-2WX-ND/13692687)
++ Micro-Controller: [Waveshare ESP32 Driver board](https://www.waveshare.com/wiki/E-Paper_ESP32_Driver_Board)
++ Display: [7.5inch HD e-Paper E-Ink Raw Display, 880×528, Black / White / Red](https://www.waveshare.com/7.5inch-e-paper-b.htm)
 
 ### Schematic
 
@@ -25,17 +23,15 @@ Most eInk based calendar projects are using a Raspberry Pi to display the calend
 | :-------: | :-----: | :---: | :----------: |
 |   3.3V    |   VCC   |  VCC  |     ---      |
 |    GND    |   GND   |  GND  |     GND      |
-|  SCK (5)  |   CLK   |  ---  |     ---      |
-| MISO (19) |   ---   |  ---  |     ---      |
-| MOSI (18) |   DIN   |  ---  |     ---      |
-|  A7 (32)  |  BUSY   |  ---  |     ---      |
+|  SCK (13) |   CLK   |  ---  |     ---      |
+| MISO ()   |   ---   |  ---  |     ---      |
+| MOSI (14) |   DIN   |  ---  |     ---      |
+|  A7 (25)  |  BUSY   |  ---  |     ---      |
 |  A8 (15)  |   CS    |  ---  |     ---      |
-| A10 (27)  |   RST   |  ---  |     ---      |
-|  A9 (33)  |   DC    |  ---  |     ---      |
-|  A9 (33)  |   DC    |  ---  |     ---      |
-|    SDA    |   ---   |  SDA  |     ---      |
-|    SCL    |   ---   |  SCL  |     ---      |
-| A11 (12)  |   ---   |  ---  |     3.3V     |
+| A10 (26)  |   RST   |  ---  |     ---      |
+|  A9 (27)  |   DC    |  ---  |     ---      |
+| DS3231 SDA|   ---   |  SDA  |     ---      |
+| DS3231 SCL|   ---   |  SCL  |     ---      |
 
 ## Calendar Source (ical)
 
@@ -63,7 +59,7 @@ The API returns a JSON with the structure as shown below. So if you are not usin
       "start": 1619013600,
       "end": 1619017200,
       "allday": false,
-      "tzid": "America/Detroit",
+      "tzid": "europe/london",
       "categories": null,
       "summary": "Business Meeting",
       "location": "1234 Street, Sample City, State, 12345 United States",
