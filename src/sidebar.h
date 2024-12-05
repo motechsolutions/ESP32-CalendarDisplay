@@ -10,4 +10,4 @@
 #include "RTClib.h"
 #include "structures.h"
 
-void sideBar(GxEPD2_GFX& display, U8G2_FOR_ADAFRUIT_GFX& u8g2Fonts, RTC_PCF8523& rtc, Weather_type* weather );
+void sideBar(GxEPD2_GFX& display, U8G2_FOR_ADAFRUIT_GFX& u8g2Fonts, RTC_DS3231& rtc, Weather_type* weather );
