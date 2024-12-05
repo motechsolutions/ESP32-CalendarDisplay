@@ -3,15 +3,15 @@
  */
 
 /* WiFi credentials */
-const char* ssid            = "";                                      // WiFi SSID
-const char* password        = "";                                      // WiFi password
+const char* ssid            = "YOUR-SSID";                                      // WiFi SSID
+const char* password        = "YOUR-WIFI-PASSWORD";                                      // WiFi password
 
 /* Calendar */
-const char* calkey          = "";                                      // Key to access calendar data
-const char* calserver       = "";                                      // Calendar Server URL
+const char* calkey          = "YOUR-CAL-KEY";                                      // Key to access calendar data
+const char* calserver       = "SERVER-URL";                                      // Calendar Server URL and Port Number
 
 /* Open Weathermap Account */
-const char* apikey          = "";                                      // Get the developer key for 1000 request/day
+const char* apikey          = "OPENWEATHERMAP-API-KEY";                                      // Get the developer key for 1000 request/day
 const char* server          = "api.openweathermap.org";                // URL (don't change)
 
 /* API Parameters Open Weathermap */
