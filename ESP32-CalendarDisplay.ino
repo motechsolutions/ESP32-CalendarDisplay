@@ -23,24 +23,20 @@
 #define ENABLE_GxEPD2_GFX 1
 
 /* Display Dependencies */
+#define USE_HSPI_FOR_EPD  
 #include <GxEPD2_BW.h>
 #include <GxEPD2_3C.h>
 #include <U8g2_for_Adafruit_GFX.h>
 
-#define MAX_DISPLAY_BUFFER_SIZE 800
-#define MAX_HEIGHT(EPD) (EPD::HEIGHT <= MAX_DISPLAY_BUFFER_SIZE / (EPD::WIDTH / 8) ? EPD::HEIGHT : MAX_DISPLAY_BUFFER_SIZE / (EPD::WIDTH / 8))
+#define GxEPD2_DISPLAY_CLASS GxEPD2_3C  
+#define GxEPD2_DRIVER_CLASS GxEPD2_750c_Z08 // Correct driver for Waveshare 7.5" B V3
 
-/* Connections for Adafruit Feather */
-static const uint8_t EPD_BUSY = 32; // to EPD BUSY
-static const uint8_t EPD_CS   = 15; // to EPD CS
-static const uint8_t EPD_RST  = 27; // to EPD RST
-static const uint8_t EPD_DC   = 33; // to EPD DC
-static const uint8_t EPD_SCK  =  5; // to EPD CLK
-static const uint8_t EPD_MISO = 19; // Master-In Slave-Out not used, as no data from display
-static const uint8_t EPD_MOSI = 18; // to EPD DIN
+GxEPD2_DISPLAY_CLASS<GxEPD2_DRIVER_CLASS, 480> display(GxEPD2_DRIVER_CLASS(/*CS=*/ 15, /*DC=*/ 27, /*RST=*/ 26, /*BUSY=*/ 25));
 
-/* Mapping of Waveshare ESP32 Driver Board */
-GxEPD2_3C < GxEPD2_750c_Z90, GxEPD2_750c_Z90::HEIGHT / 4 > display(GxEPD2_750c_Z90(/*CS=D8*/ EPD_CS, /*DC=D3*/ EPD_DC, /*RST=D4*/ EPD_RST, /*BUSY=D2*/ EPD_BUSY)); // GDEH075Z90 880x528
+#if defined(ESP32) && defined(USE_HSPI_FOR_EPD)
+#include <SPI.h> // Ensure SPI library is included  
+SPIClass hspi(HSPI);
+#endif
 
 U8G2_FOR_ADAFRUIT_GFX u8g2Fonts;
 
@@ -84,6 +80,11 @@ RTC_DATA_ATTR int ntp_last_update = 0;
 /* Setup */
 void setup()
 {
+#if defined(ESP32) && defined(USE_HSPI_FOR_EPD)
+    hspi.begin(13, 12, 14, 15); // Remap HSPI for EPD (swap pins)
+    display.epd2.selectSPI(hspi, SPISettings(400000, MSBFIRST, SPI_MODE0)); // Use SPI_MODE  
+#endif
+
   // Serial Port
   Serial.begin(115200);
   Serial.println();
