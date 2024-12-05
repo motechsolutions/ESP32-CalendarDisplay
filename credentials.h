@@ -3,16 +3,17 @@
  */
 
 /* WiFi credentials */
-const char* ssid            = "YOUR-SSID";                                      // WiFi SSID
-const char* password        = "YOUR-WIFI-PASSWORD";                                      // WiFi password
+// Wi-Fi Credentials  
+const char* ssid = "";                                      // WiFi SSID  
+const char* password = "";                   // WiFi password
 
-/* Calendar */
-const char* calkey          = "YOUR-CAL-KEY";                                      // Key to access calendar data
-const char* calserver       = "SERVER-URL";                                      // Calendar Server URL and Port Number
+// Calendar Server  
+const char* calkey = "";                                 // Key to access calendar data  
+const char calserver[] = "";                       // Locally hosted Calendar Server URL
 
-/* Open Weathermap Account */
-const char* apikey          = "OPENWEATHERMAP-API-KEY";                                      // Get the developer key for 1000 request/day
-const char* server          = "api.openweathermap.org";                // URL (don't change)
+// OpenWeatherMap API  
+const char* apikey = "";              // API key  
+const char server[] = "api.openweathermap.org";             // URL (don't change)
 
 /* API Parameters Open Weathermap */
 const char* LAT             = "52.5";                                  // Home location Latitude
@@ -24,10 +25,8 @@ const char* Hemisphere      = "north";
 const char* units           = "metric";                                // Units (imperial or metric)
 
 /* Time and NTP Server */
-const char* ntpServer       = "0.uk.pool.ntp.org";                     // URL address
-const char* timezoneStr     = "GMT0BST,M3.5.0/1,M10.5.0";              // Timezone Definition
-int gmtOffset_sec           = 0;                                       // GMT offset in seconds
-int daylightOffset_sec      = 3600;                                    // Daylight savings offset in seconds
+const char* ntpServer = ".uk.pool.ntp.org";                         // NTP Server URL  
+const char* timezoneStr = "GMTBST,M3.5./1,M10.5.";                // Timezone Definition
 
 /* Sleep Time in Minutes */
 const long SleepDuration    = 30;                                      // Display update interval in minutes
