@@ -51,7 +51,7 @@ U8G2_FOR_ADAFRUIT_GFX u8g2Fonts;
 
 /* Realtime Clock */
 #include "RTClib.h"
-RTC_PCF8523 rtc;
+RTC_DS3231 rtc;
 
 /* Piezzo Buzzer */
 int GPIO_12 = 12;
@@ -93,10 +93,10 @@ void setup()
   // Setup RTC
   pinMode(GPIO_12, OUTPUT);
 
-  // Check if the RTC PCF8523 is available
+  // Check if the RTC DS3231 is available
   if (!rtc.begin())
   {
-      Serial.println("Error: RTC PCF8523 not found.");
+      Serial.println("Error: RTC DS3231 not found.");
       while (1);
   }
 
