@@ -1,8 +1,5 @@
 /*
  * Settings for the Calendar Display
- *
- * Timezone: 
- * https://www.gnu.org/software/libc/manual/html_node/TZ-Variable.html
  */
 
 /* WiFi credentials */
@@ -10,29 +7,34 @@ const char* ssid            = "";                                      // WiFi S
 const char* password        = "";                                      // WiFi password
 
 /* Calendar */
-String calkey               = "";                                      // Key to access calendar data
-const char calserver[]      = "";                                      // Calendar Server URL
+const char* calkey          = "";                                      // Key to access calendar data
+const char* calserver       = "";                                      // Calendar Server URL
 
 /* Open Weathermap Account */
-String apikey               = "";                                      // Get the developer key for 1000 request/day
-const char server[]         = "api.openweathermap.org";                // URL (don't change)
+const char* apikey          = "";                                      // Get the developer key for 1000 request/day
+const char* server          = "api.openweathermap.org";                // URL (don't change)
 
 /* API Parameters Open Weathermap */
-const char* zip             = "";                                      // Zip Code and country code
-const char* lang            = "en";                                    // language code
-const char* units           = "imperial";                              // units (imperial or metric)
+const char* LAT             = "52.5";                                  // Home location Latitude
+const char* LON             = "-2.08";                                 // Home location Longitude
+const char* City            = "Dudley";                                // Your home city
+const char* Country         = "GB";                                    // Your country code
+const char* Language        = "EN";                                    // Language for weather description
+const char* Hemisphere      = "north"; 
+const char* units           = "metric";                                // Units (imperial or metric)
 
 /* Time and NTP Server */
-const char* ntpServer       = "pool.ntp.org";                          // URL address
-const char* timezoneStr     = "EST5EDT,M3.2.0/2,M11.1.0";              // Timezone Definition (https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv)
-int gmtOffset_sec           = -14400;                                  // Timezone offset of your location in seconds -18000;
+const char* ntpServer       = "0.uk.pool.ntp.org";                     // URL address
+const char* timezoneStr     = "GMT0BST,M3.5.0/1,M10.5.0";              // Timezone Definition
+int gmtOffset_sec           = 0;                                       // GMT offset in seconds
+int daylightOffset_sec      = 3600;                                    // Daylight savings offset in seconds
 
 /* Sleep Time in Minutes */
 const long SleepDuration    = 30;                                      // Display update interval in minutes
-const int PowerSaveStart    = 22;                                      // Start power save where display is not updated (24 hour format)
-const int PowerSaveEnd      =  5;                                      // End power save where display is not updated (24 hour format)
+const int PowerSaveStart    = 22;                                      // Start power save mode
+const int PowerSaveEnd      = 5;                                       // End power save mode
 
 /* Notification sounds */
-const bool playAlarm        = true;                                    // Play Calendar Alarms
-const bool playBday         =  true;                                   // Play Birthday Notifications (true/false)
-const int playBdayTime      =  10;                                     // Play Birthday Notification at full hour (24 hour format)
+const bool playAlarm        = false;                                   // Play Calendar Alarms
+const bool playBday         = false;                                   // Play Birthday Notifications
+const int playBdayTime      = 10;                                      // Time for birthday notifications
