@@ -345,41 +345,35 @@ void espSLEEP(long refresh)
 }
 
 /* Http Request */
-bool httpsRequest(WiFiClient& client, int req)
-{
-  // close connection before sending a new request
-  client.stop();
-  HTTPClient http;
-  http.setTimeout(60000); // the local RPi Zero is very slow, so a long time out is needed
-  if(req == 1)
-  {
-    http.begin( "http://" + String(calserver) + "/calendar?token=" + calkey);
-  }
-  if(req == 2)
-  {
-    String uri = "/data/2.5/weather?appid=" + apikey + "&zip=" + zip + "&units=" + units + "&lang=" + lang;
-    http.begin(client, server, 443, uri);
-  }
-  int httpCode = http.GET();
-  if(httpCode == HTTP_CODE_OK) {
-    if (req == 1 && !parseIcalJSON( http.getString() ) )
-        return false;
-    if (req == 2 && !parseWeathermapJSON( http.getStream() ) )
-        return false;
+bool httpsRequest(WiFiClient& client, int req) {
+    // close connection before sending a new request  
     client.stop();
+    HTTPClient http;
+    http.setTimeout(60000); // the local RPi Zero is very slow, so a long time out is needed  
+    if (req == 1) {
+        String fullURL = String("http://") + calserver + "/?token=" + calkey;
+        http.begin(fullURL);
+    }
+    if (req == 2) {
+        String uri = String("/data/2.5/weather?lat=") + LAT + "&lon=" + LON + "&appid=" + apikey + "&units=" + units;
+        http.begin(client, server, 443, uri);
+    }
+    int httpCode = http.GET();
+    if (httpCode == HTTP_CODE_OK) {
+        if (req == 1 && !parseIcalJSON(http.getString())) return false;
+        if (req == 2 && !parseWeathermapJSON(http.getStream())) return false;
+        client.stop();
+        http.end();
+        return true;
+    } else {
+        Serial.printf("connection failed, error: %s", http.errorToString(httpCode).c_str());
+        Serial.println(httpCode);
+        client.stop();
+        http.end();
+        return false;
+    }
     http.end();
     return true;
-  }
-  else
-  {
-    Serial.printf("connection failed, error: %s", http.errorToString(httpCode).c_str());
-    Serial.println(httpCode);
-    client.stop();
-    http.end();
-    return false;
-  }
-  http.end();
-  return true;
 }
 
 /* Receive Data from Calendar Server */
