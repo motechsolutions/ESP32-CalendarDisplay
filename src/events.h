@@ -10,4 +10,4 @@
 #include "RTClib.h"
 #include "structures.h"
 
-long eventList(GxEPD2_GFX& display, U8G2_FOR_ADAFRUIT_GFX& u8g2Fonts, RTC_PCF8523& rtc, Event_type* events);
+long eventList(GxEPD2_GFX& display, U8G2_FOR_ADAFRUIT_GFX& u8g2Fonts, RTC_DS3231& rtc, Event_type* events);
