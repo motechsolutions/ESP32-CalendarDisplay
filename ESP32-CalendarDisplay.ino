@@ -101,12 +101,11 @@ void setup()
   }
 
   // Set the clock's time if not initialized
-  if (!rtc.initialized() || rtc.lostPower())
-  {
-      Serial.println("Warning: RTC needs to be initialized");
-      rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
-      ntp_update = true;
-  }
+    if (rtc.lostPower())
+    {
+        Serial.println("Warning: RTC needs to be initialized");
+        rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+    }
 
   // Display
   display.init(115200);
@@ -184,7 +183,6 @@ uint8_t StartWiFi()
   // IPAddress dns(8, 8, 8, 8); // Google DNS
   WiFi.disconnect();
   WiFi.mode(WIFI_STA); // switch off AP
-  WiFi.setAutoConnect(true);
   WiFi.setAutoReconnect(true);
   WiFi.begin(ssid, password);
   unsigned long start = millis();
