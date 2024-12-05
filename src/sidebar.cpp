@@ -49,7 +49,7 @@ int getDayOfWeek(int year, int month, int day)
     return days % 7;   // remove all multiples of 7
 }
 
-void miniCalendar(GxEPD2_GFX& display, U8G2_FOR_ADAFRUIT_GFX& u8g2Fonts, RTC_PCF8523& rtc )
+void miniCalendar(GxEPD2_GFX& display, U8G2_FOR_ADAFRUIT_GFX& u8g2Fonts, RTC_DS3231& rtc )
 {
 
     // Time and Date
@@ -117,7 +117,7 @@ void miniCalendar(GxEPD2_GFX& display, U8G2_FOR_ADAFRUIT_GFX& u8g2Fonts, RTC_PCF
     }
 }
 
-void sideBar(GxEPD2_GFX& display, U8G2_FOR_ADAFRUIT_GFX& u8g2Fonts, RTC_PCF8523& rtc, Weather_type* weather )
+void sideBar(GxEPD2_GFX& display, U8G2_FOR_ADAFRUIT_GFX& u8g2Fonts, RTC_DS3231& rtc, Weather_type* weather )
 {
 
     // Time and Date
