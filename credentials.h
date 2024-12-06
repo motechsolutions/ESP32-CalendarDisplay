@@ -11,7 +11,7 @@ const char* password        = "";                         // WiFi password
 
 /* Calendar */
 String calkey               = "";                                   // Key to access calendar data
-const char calserver[]      = "SERVER-URL:3000";                             // Calendar Server URL
+const char calserver[]      = "URL:3000";                             // Locally hosted Calendar Server URL
 
 /* Open Weathermap Account */
 String apikey               = "";                // Get the developer key for 1000 request/day
@@ -27,9 +27,10 @@ String Hemisphere       = "north";
 String units            = "metric";  
 
 /* Time and NTP Server */
-const char* ntpServer       = "0.uk.pool.ntp.org";                          // URL address
-const char* timezoneStr     = "GMT0BST,M3.5.0/1,M10.5.0";              // Timezone Definition (https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv)
-int gmtOffset_sec           = 0;                                  // Timezone offset of your location in seconds -18000;
+const char* ntpServer       = "0.uk.pool.ntp.org";                   // URL address
+const char* timezoneStr     = "GMT0BST,M3.5.0/1,M10.5.0";            // Timezone Definition (https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv)
+int gmtOffset_sec       = 0;    // UK normal time is GMT, so GMT Offset is 0, for US (-5Hrs) is typically -18000, AU is typically (+8hrs) 28800
+int daylightOffset_sec  = 3600;                                  // Timezone offset of your location in seconds -18000;
 
 /* Sleep Time in Minutes */
 const long SleepDuration    = 30;                                      // Display update interval in minutes
@@ -39,4 +40,4 @@ const int PowerSaveEnd      =  5;                                      // End po
 /* Notification sounds */
 const bool playAlarm        = false;                                   // Play Calendar Alarms
 const bool playBday         = false;                                   // Play Birthday Notifications (true/false)
-const int playBdayTime      =  10;                                     // Play Birthday Notification at full hour (24 hour format)
+const int playBdayTime      = 10;                                      // Play Birthday Notification at full hour (24 hour format)
