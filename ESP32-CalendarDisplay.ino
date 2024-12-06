@@ -82,7 +82,7 @@ void setup()
 {
 #if defined(ESP32) && defined(USE_HSPI_FOR_EPD)
     hspi.begin(13, 12, 14, 15); // Remap HSPI for EPD (swap pins)
-    display.epd2.selectSPI(hspi, SPISettings(400000, MSBFIRST, SPI_MODE0)); // Use SPI_MODE  
+    display.epd2.selectSPI(hspi, SPISettings(400000, MSBFIRST, SPI_MODE0)); // Use SPI_MODE 
 #endif
 
   // Serial Port
@@ -104,7 +104,7 @@ void setup()
     if (rtc.lostPower())
     {
         Serial.println("Warning: RTC needs to be initialized");
-        rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+        rtc.adjust(DateTime((__DATE__), (__TIME__)));
     }
 
   // Display
@@ -353,7 +353,7 @@ bool httpsRequest(WiFiClient& client, int req)
   http.setTimeout(60000); // the local RPi Zero is very slow, so a long time out is needed
   if(req == 1)
   {
-    http.begin("http://" + String(calserver) + "/?token=" + calkey);
+    http.begin( "http://" + String(calserver) + "/?token=" + calkey);
   }
   if(req == 2)
   {
